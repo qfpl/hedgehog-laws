@@ -5,8 +5,8 @@ module Hedgehog.Laws.Monoid (
   , semigroupLaws
   , leftIdentity
   , rightIdentity
-  , monoidAssociative
-  , semigroupAssociative
+  , monoidAssociativity
+  , semigroupAssociativity
 ) where
 
 import Data.Semigroup (Semigroup ((<>)))
@@ -30,23 +30,23 @@ mkAssoc (|+|) g = property $ do
   z <- forAll g
   x |+| (y |+| z) === (x |+| y) |+| z
 
-monoidAssociative :: (Eq m, Show m, Monoid m) => Gen m -> Property
-monoidAssociative = mkAssoc mappend
+monoidAssociativity :: (Eq m, Show m, Monoid m) => Gen m -> Property
+monoidAssociativity = mkAssoc mappend
 
-semigroupAssociative :: (Eq m, Show m, Semigroup m) => Gen m -> Property
-semigroupAssociative = mkAssoc (<>)
+semigroupAssociativity :: (Eq m, Show m, Semigroup m) => Gen m -> Property
+semigroupAssociativity = mkAssoc (<>)
 
 monoidLaws :: (Eq m, Show m, Monoid m) => Gen m -> Group
 monoidLaws g =
   Group "Monoid Laws"
     [ ("leftIdentity", leftIdentity g)
     , ("rightIdentity", rightIdentity g)
-    , ("associativity", monoidAssociative g)
+    , ("associativity", monoidAssociativity g)
     ]
 
 semigroupLaws :: (Eq m, Show m, Semigroup m) => Gen m -> Group
 semigroupLaws g =
   Group "Semigroup Laws"
-    [ ("associativity", semigroupAssociative g)
+    [ ("associativity", semigroupAssociativity g)
     ]
 
