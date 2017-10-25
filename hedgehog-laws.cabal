@@ -4,10 +4,10 @@
 name:                hedgehog-laws
 version:             0.1.0.0
 synopsis:            Hedgehog properties for typeclass laws
--- description:         
+description:         Hedgehog properties for laws, so that you can be confident about your instances
 homepage:            https://github.com/qfpl/hedgehog-laws
 license:             BSD3
-license-file:        LICENSE
+license-file:        LICENCE
 author:              Queensland Functional Programming Lab
 maintainer:          oᴉ˙ldɟb@llǝʞsɐɥ
 -- copyright:           
@@ -17,9 +17,11 @@ extra-source-files:  ChangeLog.md
 cabal-version:       >=1.10
 
 library
-  -- exposed-modules:     
+  exposed-modules:     Hedgehog.Laws.Monoid
   -- other-modules:       
   -- other-extensions:    
-  build-depends:       base >=4.9 && <4.10
+  build-depends:       base >=4.8 && <4.11 
+                     , hedgehog >= 0.5 && < 0.6
+                     , semigroups >= 0.8.4 && < 1
   hs-source-dirs:      src
   default-language:    Haskell2010
